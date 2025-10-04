@@ -1,0 +1,41 @@
+{
+  "validBook": {
+    "id": 0,
+    "title": "Test Book for Automation",
+    "description": "This is a comprehensive test book created for API automation testing purposes.",
+    "pageCount": 350,
+    "excerpt": "This book covers various aspects of test automation and API testing methodologies.",
+    "publishDate": "2024-01-15T10:30:00.000Z"
+  },
+  "bookToUpdate": {
+    "id": 1,
+    "title": "Updated Test Book",
+    "description": "This book has been updated through API automation testing.",
+    "pageCount": 450,
+    "excerpt": "Updated excerpt for the test book.",
+    "publishDate": "2024-02-15T14:30:00.000Z"
+  },
+  "invalidBook": {
+    "title": "",
+    "description": null,
+    "pageCount": -50,
+    "excerpt": "",
+    "publishDate": "invalid-date"
+  },
+  "bookWithSpecialCharacters": {
+    "id": 0,
+    "title": "Test Book with Special Characters: !@#$%^&*()",
+    "description": "Description with unicode: ñáéíóú αβγδε 中文测试",
+    "pageCount": 200,
+    "excerpt": "Excerpt with emojis: 📚📖✨🔍",
+    "publishDate": "2024-03-15T16:45:00.000Z"
+  },
+  "bookWithLongText": {
+    "id": 0,
+    "title": "Very Long Title That Exceeds Normal Length Expectations And Contains Multiple Words To Test Field Length Validation",
+    "description": "This is an extremely long description that contains multiple sentences and paragraphs to test how the API handles large text fields. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "pageCount": 1000,
+    "excerpt": "Very long excerpt with detailed information about the book content and multiple sentences to test field capacity.",
+    "publishDate": "2024-04-15T18:00:00.000Z"
+  }
+}

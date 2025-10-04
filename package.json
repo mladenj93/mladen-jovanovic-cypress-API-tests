@@ -1,0 +1,44 @@
+{
+  "name": "cypress-api-automation-tests",
+  "version": "1.0.0",
+  "description": "API automation testing framework for FakeRestAPI using Cypress",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:headless": "cypress run --headless",
+    "test": "cypress run --spec \"cypress/e2e/**/*.cy.js\"",
+    "test:books": "cypress run --spec \"cypress/e2e/books/**/*.cy.js\"",
+    "test:authors": "cypress run --spec \"cypress/e2e/authors/**/*.cy.js\"",
+    "generate:report": "cypress run",
+    "clean:reports": "rm -rf cypress/reports",
+    "docker:build": "docker build -t cypress-api-tests .",
+    "docker:run": "docker run --rm cypress-api-tests",
+    "docker:up": "docker compose up --build",
+    "docker:down": "docker compose down",
+    "docker:test": "docker compose up --build --abort-on-container-exit",
+    "docker:test:books": "cross-env CYPRESS_SPEC=cypress/e2e/books/**/*.cy.js docker compose up --build --abort-on-container-exit",
+    "docker:test:authors": "cross-env CYPRESS_SPEC=cypress/e2e/authors/**/*.cy.js docker compose up --build --abort-on-container-exit",
+    "docker:test:edge": "cross-env CYPRESS_SPEC=cypress/e2e/**/*edge-cases*.cy.js docker compose up --build --abort-on-container-exit"
+  },
+  "keywords": [
+    "cypress",
+    "api",
+    "automation",
+    "testing",
+    "fakerestapi"
+  ],
+  "author": "API Test Automation",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "cross-env": "^10.1.0",
+    "cypress": "^15.2.0",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^4.3.0",
+    "mochawesome-report-generator": "^6.2.0"
+  },
+  "dependencies": {
+    "moment": "^2.29.4"
+  }
+}

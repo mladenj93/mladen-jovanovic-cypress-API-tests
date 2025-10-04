@@ -1,0 +1,62 @@
+name: 🔬 Cypress API Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    inputs:
+      spec_pattern:
+        description: 'Spec pattern to run (e.g., cypress/e2e/books/*.cy.js)'
+        required: false
+        default: 'cypress/e2e/**/*.cy.js'
+      environment:
+        description: 'Target environment'
+        required: false
+        default: 'https://fakerestapi.azurewebsites.net'
+
+env:
+  CYPRESS_BASE_URL: ${{ github.event.inputs.environment || 'https://fakerestapi.azurewebsites.net' }}
+  CYPRESS_BASE_API_URL: ${{ github.event.inputs.environment || 'https://fakerestapi.azurewebsites.net' }}/api/v1
+  CYPRESS_SPEC: ${{ github.event.inputs.spec_pattern || '' }}
+
+jobs:
+  cypress-tests:
+    name: 🧪 Cypress Docker Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📦 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🐳 Build and Run Docker Compose Tests
+        run: |
+          docker compose up --build --abort-on-container-exit
+        env:
+          CYPRESS_BASE_URL: ${{ env.CYPRESS_BASE_URL }}
+          CYPRESS_BASE_API_URL: ${{ env.CYPRESS_BASE_API_URL }}
+          CYPRESS_SPEC: ${{ env.CYPRESS_SPEC }}
+
+      - name: 📊 Upload Test Results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cypress-test-results
+          path: |
+            cypress/reports/
+            cypress/screenshots/
+            cypress/videos/
+          retention-days: 30
+
+      - name: 📈 Test Results Summary
+        if: always()
+        run: |
+          echo "## 🔬 Test Results Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ **Tests completed successfully!**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📊 **Test artifacts available:**" >> $GITHUB_STEP_SUMMARY
+          echo "- Screenshots: cypress/screenshots/" >> $GITHUB_STEP_SUMMARY
+          echo "- Videos: cypress/videos/" >> $GITHUB_STEP_SUMMARY

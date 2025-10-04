@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  cypress-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cypress-api-tests
+    environment:
+      - CYPRESS_baseUrl=${CYPRESS_BASE_URL:-https://fakerestapi.azurewebsites.net}
+      - CYPRESS_baseApiUrl=${CYPRESS_BASE_API_URL:-https://fakerestapi.azurewebsites.net/api/v1}
+      - CYPRESS_SPEC=${CYPRESS_SPEC:-}
+    volumes:
+      - .:/app
+      - ./cypress/reports:/app/cypress/reports
+      - ./cypress/screenshots:/app/cypress/screenshots
+      - ./cypress/videos:/app/cypress/videos
+    restart: "no"

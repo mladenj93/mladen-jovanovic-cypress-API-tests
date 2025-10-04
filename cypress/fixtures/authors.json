@@ -1,0 +1,43 @@
+{
+  "validAuthor": {
+    "id": 0,
+    "idBook": 1,
+    "firstName": "John",
+    "lastName": "TestAuthor"
+  },
+  "authorToUpdate": {
+    "id": 1,
+    "idBook": 2,
+    "firstName": "Jane",
+    "lastName": "UpdatedAuthor"
+  },
+  "invalidAuthor": {
+    "idBook": -1,
+    "firstName": "",
+    "lastName": null
+  },
+  "authorWithSpecialCharacters": {
+    "id": 0,
+    "idBook": 3,
+    "firstName": "José-María",
+    "lastName": "García-López"
+  },
+  "authorWithLongNames": {
+    "id": 0,
+    "idBook": 4,
+    "firstName": "VeryLongFirstNameThatExceedsNormalLengthExpectations",
+    "lastName": "VeryLongLastNameThatExceedsNormalLengthExpectationsAndContainsMultipleWords"
+  },
+  "authorWithUnicodeCharacters": {
+    "id": 0,
+    "idBook": 5,
+    "firstName": "张三",
+    "lastName": "测试"
+  },
+  "authorWithNumbers": {
+    "id": 0,
+    "idBook": 6,
+    "firstName": "Author123",
+    "lastName": "Test456"
+  }
+}
